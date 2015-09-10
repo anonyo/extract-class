@@ -40,11 +40,7 @@ class SurveyInviter
   end
 
   def invalid_recipients
-    @invalid_recipients ||= recipient_list.map do |item|
-      unless item.match(EMAIL_REGEX)
-        item
-      end
-    end.compact
+    recipient_list.select { |item| item !~ EMAIL_REGEX }
   end
 
   private
